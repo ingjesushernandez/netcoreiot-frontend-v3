@@ -1,0 +1,531 @@
+:root {
+  --theme-deafult: #7366ff;
+  --theme-secondary: #f73164;
+  --light-background: rgba(242, 243, 247, 0.7);
+  --body-font-color: #2f2f3b;
+  --chart-border: #ecf3fa;
+  --recent-chart-bg: #fcfcfd;
+  --light-bg: #f6f7f9;
+  --white: #fff;
+  --light2: #f5f6f9;
+  --sidebar-border: rgba(0, 0, 0, 0.1);
+  --chart-text-color: rgba(82, 82, 108, 0.8);
+  --recent-dashed-border: rgba(82, 82, 108, 0.3);
+  --chart-dashed-border: rgba(82, 82, 108, 0.2);
+  --chart-progress-light: #52526c1a;
+  --recent-box-bg: #f2f4f7;
+  --recent-border: rgba(97, 101, 122, 0.25);
+  --course-light-btn: #f2f3f7;
+  --course-bg: #f7f7f7;
+  --balance-profie-bg: #e0dfef;
+  --view-grid-bg: #ecf3fa80;
+  --view-border-marker: #cfcdfc;
+
+  --fc-button-bg-color: var(--theme-deafult);
+  --fc-button-active-bg-color: var(--theme-deafult);
+  --fc-button-active-border-color: var(--theme-deafult);
+  --fc-button-border-color: var(--theme-deafult);
+  --fc-button-hover-bg-color: var(--theme-deafult);
+  --fc-button-hover-border-color: var(--theme-deafult);
+}
+
+/* 
+
+ CONTENIDO
+
+ 1. UTILS
+ 2. HEADER
+ 3. SIDEBAR
+ 4. FORM
+ 5. TABLE
+ 6. PLUGINS
+ 7. PAGES
+ 8. IOT
+ 9. RESPONSIVE
+
+*/
+
+body,
+dl,
+dl dd,
+dl dt,
+dl li,
+ol,
+ol dd,
+ol dt,
+ol li,
+p,
+p dd,
+p dt,
+p li,
+ul,
+ul dd,
+ul dt,
+ul li {
+  color: var(--body-font-color) !important;
+}
+
+/* 1. UTILS */
+body.dark-only .page-wrapper .page-body-wrapper .page-body .card {
+  border: 1px solid transparent !important;
+}
+
+body.dark-only .page-wrapper .page-body-wrapper .page-title {
+  border-bottom-color: transparent;
+}
+
+.top-25 {
+  top: 25% !important;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+body.dark-only .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-wrapper a {
+  display: inline-block;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.btn.btn-link {
+  padding: 0 !important;
+}
+
+/* 2. HEADER */
+
+body.dark-only .page-wrapper .page-header {
+  background-color: #ffffff00;
+}
+
+.page-wrapper .page-header .header-wrapper .nav-right .profile-dropdown {
+  top: 45px;
+}
+
+/* Breadcrumb */
+.page-wrapper .page-body-wrapper .page-title .breadcrumb .breadcrumb-item.active {
+  color: var(--body-font-color);
+  font-weight: 500;
+}
+
+.page-wrapper .page-body-wrapper .page-title .breadcrumb .breadcrumb-item a svg {
+  color: var(--theme-deafult);
+  stroke: var(--theme-deafult);
+}
+
+/* 3. SIDEBAR */
+
+#sidebar-menu .sidebar-link.sidebar-title {
+  cursor: pointer;
+}
+
+.toggle-sidebar:hover > i svg {
+  color: var(--theme-default) !important;
+  stroke: var(--theme-default) !important;
+}
+
+.page-wrapper.compact-wrapper
+  .page-body-wrapper
+  .sidebar-wrapper
+  .sidebar-main
+  .sidebar-links
+  > li
+  .router-link-active {
+  color: var(--theme-deafult) !important;
+}
+
+.page-wrapper.compact-wrapper
+  .page-body-wrapper
+  div.sidebar-wrapper
+  .sidebar-main
+  .sidebar-links
+  > li
+  .sidebar-submenu
+  li
+  .router-link-active::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+#sidebar-menu .sidebar-links .sidebar-link .icon-link {
+  vertical-align: -3px;
+  color: #2c323fb6;
+  stroke: #2c323fb6;
+}
+
+body.dark-only #sidebar-menu .sidebar-links .sidebar-link.router-link-active .icon-link,
+body.dark-only #sidebar-menu .sidebar-links .sidebar-link:hover .icon-link,
+#sidebar-menu .sidebar-links .sidebar-link:hover .icon-link,
+#sidebar-menu .sidebar-links .sidebar-link.router-link-active .icon-link {
+  stroke: #7366ff;
+  color: #7366ff;
+}
+
+#sidebar-menu .sidebar-links .sidebar-link.router-link-active {
+  transition: all 0.5s ease;
+  position: relative;
+  margin-bottom: 10px;
+  background-color: #f1f0ff;
+}
+
+body.dark-only #sidebar-menu .sidebar-links .sidebar-link.router-link-active {
+  background-color: rgba(115, 102, 255, 0.2);
+}
+
+#sidebar-menu .sidebar-links .sidebar-link.router-link-active span {
+  color: var(--theme-deafult);
+  transition: all 0.3s ease;
+}
+
+#sidebar-menu .sidebar-links .sidebar-list {
+  margin: 0;
+}
+
+body.dark-only #sidebar-menu .sidebar-links .sidebar-link .icon-link {
+  color: #fff;
+  stroke: #fff;
+}
+
+#sidebar-menu .sidebar-links .sidebar-link.router-link-active::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+#sidebar-menu .sidebar-links .sidebar-list .has-dropdown:not(.collapsed) {
+  transition: all 0.5s ease;
+  position: relative;
+  margin-bottom: 10px;
+  background-color: rgba(115, 102, 255, 0.2);
+}
+
+#sidebar-menu .sidebar-link.has-dropdown:not(.collapsed) svg.icon,
+#sidebar-menu .sidebar-links .sidebar-link.router-link-active svg.icon {
+  color: var(--theme-deafult) !important;
+  stroke: var(--theme-deafult) !important;
+}
+
+#sidebar-menu .sidebar-link.has-dropdown:not(.collapsed) span,
+#sidebar-menu .sidebar-link.has-dropdown:not(.collapsed) .according-menu i,
+#sidebar-menu .sidebar-link.has-dropdown:not(.collapsed) {
+  color: var(--theme-deafult) !important;
+}
+
+#sidebar-menu .sidebar-list .sidebar-title .according-menu svg {
+  vertical-align: middle;
+  color: #75758acc;
+}
+
+#sidebar-menu .sidebar-links .has-dropdown:not(.collapsed)::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+#sidebar-menu .sidebar-links > li .sidebar-link.has-dropdown:not(.collapsed) ~ .sidebar-submenu::before {
+  height: calc(100% - 8px);
+  transition: height 0.5s;
+}
+
+#sidebar-menu .custom-scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #ecf3fa;
+}
+
+#sidebar-menu .custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#sidebar-menu .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(68, 102, 242, 0.15);
+}
+
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper.close_icon .sidebar-main .sidebar-links,
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links {
+  height: calc(100vh);
+}
+
+/* Icons */
+body.dark-only
+  .page-wrapper.compact-wrapper
+  .page-body-wrapper
+  div.sidebar-wrapper
+  .sidebar-main
+  .sidebar-links
+  > li
+  .icon {
+  color: #fff;
+}
+
+.page-wrapper.compact-wrapper
+  .page-body-wrapper
+  div.sidebar-wrapper
+  .sidebar-main
+  .sidebar-links
+  > li:hover
+  .sidebar-link:not(.active):hover
+  svg.icon {
+  color: var(--theme-deafult) !important;
+}
+
+/* 4. FORM */
+body.dark-only .page-wrapper .page-body-wrapper .form-select {
+  background-color: #1d1e26;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+}
+
+body.dark-only .theme-form .form-control:focus,
+body.dark-only .theme-form .form-select:focus,
+.theme-form .form-control:focus,
+.theme-form .form-select:focus {
+  border-color: var(--theme-default) !important;
+}
+
+body.dark-only .was-validated .form-select:invalid,
+body.dark-only .theme-form .form-select.is-invalid,
+body.dark-only .was-validated .form-control:invalid,
+body.dark-only .theme-form .form-control.is-invalid {
+  border-color: #fc564a !important;
+}
+
+body.dark-only .form-check-input:checked,
+.form-check-input:checked {
+  background-color: #7366ff !important;
+  border-color: #7366ff !important;
+}
+
+body.dark-only .form-check-input:focus,
+.form-check-input:focus {
+  border-color: #7366ff;
+  box-shadow: 0 0 0 4px rgba(115, 102, 255, 0.25);
+}
+
+.was-validated .form-select:invalid,
+.theme-form .form-select.is-invalid,
+.was-validated .form-control:invalid,
+.theme-form .form-control.is-invalid {
+  border-color: #fc564a !important;
+}
+
+.show-hide-password {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+body.dark-only .custom-input .form-control,
+body.dark-only .custom-input .form-select {
+  border-color: #374558 !important;
+}
+
+/* 5. TABLE */
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-color: #52526c1a !important;
+}
+
+.customize-table .vue3-easy-data-table__body tr {
+  font-size: 13px !important;
+}
+
+.customize-table .vue3-easy-data-table__header th {
+  color: #52526c !important;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.customize-table .vue3-easy-data-table__header th {
+  background-color: var(--light2) !important;
+}
+
+.customize-table .vue3-easy-data-table__body tr td {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.vue3-easy-data-table__header tr th {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.customize-table .vue3-easy-data-table__header tr th:first-child {
+  padding-left: 25px;
+}
+
+.customize-table .vue3-easy-data-table__body tr td:last-child,
+.customize-table .vue3-easy-data-table__header tr th:last-child {
+  padding-right: 25px;
+}
+
+.customize-table .vue3-easy-data-table__body tr td:first-child {
+  padding-left: 25px;
+}
+
+.customize-table .vue3-easy-data-table__body tr td .badge {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.vue3-easy-data-table.customize-table.table-responsive {
+  border: none;
+}
+
+.input-search-table .input-group-text {
+  background-color: #f4f4f4;
+  color: #7366ff;
+}
+
+.customize-table .form-switch .form-check-input.check-size {
+  height: 18px;
+  margin-top: 0;
+  width: 36px;
+}
+
+.customize-table .table-status.badge {
+  font-size: 10px !important;
+  padding: 0.25em 0.5em !important;
+  font-weight: 600 !important;
+}
+
+.modal .modal-body .table .form-check-input {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  top: -2px;
+  right: 2px;
+}
+
+/* Table Dark */
+body.dark-only tbody,
+body.dark-only td,
+body.dark-only tfoot,
+body.dark-only th,
+body.dark-only thead,
+body.dark-only tr {
+  border-color: #374558 !important;
+}
+
+body.dark-only .customize-table .vue3-easy-data-table__body tr td {
+  background-color: #262932;
+  color: #ffffff99 !important;
+}
+
+body.dark-only .customize-table .vue3-easy-data-table__body tr:hover td {
+  background-color: #2629326e;
+}
+
+body.dark-only .customize-table .vue3-easy-data-table__header th {
+  color: #ffffff99 !important;
+}
+
+body.dark-only .customize-table .vue3-easy-data-table__main {
+  background-color: #1d1e26 !important;
+}
+
+body.dark-only .customize-table .easy-data-table__loading {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(2px);
+}
+
+body.dark-only .customize-table .easy-data-table__message-loading,
+body.dark-only .customize-table .easy-data-table__loading .loading-icon {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+body.dark-only .modal .modal-body .table th {
+  color: #ffffff99 !important;
+}
+
+body.dark-only .modal .modal-body .table td {
+  color: #ffffff66 !important;
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pagination .page-link:focus:not(:focus-visible) {
+  box-shadow: none !important;
+}
+
+.pagination .page-link:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb, 115, 102, 255), 0.35);
+}
+
+.pagination .page-link.disabled {
+  pointer-events: none;
+}
+
+/* 6. PLUGINS */
+
+/* Sweet Alerts */
+.swal2-container .swal2-html-container {
+  padding: 0;
+  margin: 1em 1.6em 0.3em;
+}
+
+.swal2-container .swal2-html-container {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.swal2-container button {
+  color: #fff;
+}
+
+.swal2-container .swal2-actions .swal2-cancel {
+  background-color: var(--theme-secondary);
+  border-color: var(--theme-secondary);
+}
+
+/* 7. PAGES */
+
+/* Login */
+.login-card {
+  background-image: url(../img/login/login_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Profile */
+.profile-avatar .btn-upload  {
+  bottom: 110px;
+  left: 40px;
+}
+
+/* 8. IOT */
+
+/* 9. RESPONSIVE */
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .pagination-container {
+    justify-content: center;
+  }
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* Laptop */
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+}
+
+/* Desktop */
+@media only screen and (min-width: 1367px) {
+}

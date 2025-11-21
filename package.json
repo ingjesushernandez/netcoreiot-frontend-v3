@@ -1,0 +1,41 @@
+{
+  "name": "frontend-netcoreiot",
+  "version": "0.0.1",
+  "description": "Desarrollo frontend NetcoreIoT",
+  "author": "Ing. Jesús Hernández",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@pinia/nuxt": "^0.5.1",
+    "@popperjs/core": "^2.11.8",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
+    "@vueuse/core": "^10.11.0",
+    "axios": "^1.13.2",
+    "bootstrap": "5.2.3",
+    "nuxt": "^3.12.3",
+    "pinia": "^2.1.7",
+    "sweetalert2": "^11.26.3",
+    "vue": "^3.4.31",
+    "vue-feather": "^2.0.0",
+    "vue-router": "^4.3.0",
+    "vue-toastification": "^2.0.0-rc.5",
+    "vue3-easy-data-table": "^1.5.47"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/node": "^20.14.10",
+    "nuxt-icon": "^0.6.8",
+    "sass": "1.64.2",
+    "sass-loader": "^14.2.1"
+  }
+}
