@@ -1,10 +1,17 @@
 <script setup lang="ts">
 const { openSidebar, showOverlay, activeOverlay, showOpenSidebar } = useTheme();
 
-onBeforeMount(async () => {
+const { startMqttClient } = useMqtt();
+const auth = useAuthStore();
+
+onMounted(async () => {
   if (window.innerWidth <= 991) {
     showOverlay.value = true;
     openSidebar();
+  }
+
+  if (auth.loggedUserId || auth.loggedUser?._id) {
+    setTimeout(() => startMqttClient(), 500);
   }
 });
 </script>

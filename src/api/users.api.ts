@@ -1,5 +1,4 @@
 import type { IParams, IPaged } from "./api.interfaces";
-import type { IUser, ICreateUser, IUpdatePass, IEnable, IProfileForm } from "../modules/users/interfaces";
 
 export const usersAxios = () => {
   const { $api } = useNuxtApp();

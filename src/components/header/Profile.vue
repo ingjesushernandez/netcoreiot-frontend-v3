@@ -39,7 +39,7 @@ watch(remoteAvatar, (val) => {
     </div>
     <ul class="profile-dropdown onhover-show-div">
       <li>
-        <NuxtLink href="#" title="Ir a Mi Cuenta">
+        <NuxtLink :to="{ name: 'settings-profile' }" title="Ir a Mi Cuenta">
           <Icon name="ph:user-gear-light" />
           <span>Perfil</span>
         </NuxtLink>

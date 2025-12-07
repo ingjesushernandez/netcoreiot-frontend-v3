@@ -2,7 +2,6 @@ import useVuelidate from "@vuelidate/core";
 import { required, helpers, minLength, maxLength } from "@vuelidate/validators";
 
 import { rolesAxios } from "~/api/roles.api";
-import type { ICreateRole, IPermissions, IRole } from "../interfaces";
 
 const emptyForm = (): ICreateRole => ({
   key: "",
@@ -20,7 +19,7 @@ export default function () {
       const { data } = await api.findAll(q);
       return { items: data.data ?? [], total: data.total ?? 0 };
     },
-    setList: store.setList,
+    setList: (list, total) => store.setList(list, total),
     loadingRef: toRef(store, "loading"),
   });
 
@@ -145,8 +144,8 @@ export default function () {
     }
   };
 
-  const handleDelete = async (r: IRole) => {
-    if (r.isSystem) {
+  const handleDelete = async (id: string, isSystem: boolean) => {
+    if (isSystem) {
       notifyApiError(null as any, "No puedes eliminar un rol del sistema.");
       return;
     }
@@ -163,7 +162,7 @@ export default function () {
     if (!res.isConfirmed) return;
 
     try {
-      const { data } = await api.delete(r._id);
+      const { data } = await api.delete(id);
       if (data.message === "ROLE_DELETED") {
         notifyApiSuccess("Rol eliminado correctamente.");
         await fetchList();

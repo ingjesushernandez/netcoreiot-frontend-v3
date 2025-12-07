@@ -2,7 +2,6 @@ import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 
 import { authAxios } from "~/api/auth.api";
-import type { ILoginForm } from "../interfaces";
 
 const REMEMBER_KEY = "auth:remember";
 

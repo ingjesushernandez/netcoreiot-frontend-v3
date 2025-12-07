@@ -12,7 +12,7 @@ export interface IParams {
 }
 
 export interface IPaged<T> {
-  success: boolean;
+  success?: boolean;
   message: string;
   data: T;
   total?: number;

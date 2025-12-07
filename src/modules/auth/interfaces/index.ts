@@ -1,5 +1,3 @@
-import type { IRole } from "~/modules/settings/interfaces";
-
 export interface IAuthDto {
   email?: string;
   password?: string;

@@ -3,16 +3,15 @@ import { required, minLength, maxLength, email as vEmail } from "@vuelidate/vali
 
 import { rolesAxios } from "~/api/roles.api";
 import { usersAxios } from "~/api/users.api";
-import type { ICreateUser, IRoleOption } from "../interfaces";
 
 export default function () {
   const router = useRouter();
-  const apiUsers = usersAxios();
+  const api = usersAxios();
   const apiRoles = rolesAxios();
 
   // ---- state
-  const loadingRoles = ref(false);
   const submitting = ref(false);
+  const loadingRoles = ref(false);
   const roles = ref<IRoleOption[]>([]);
   const roleOptions = computed(() => roles.value.map((r) => ({ value: r._id, label: r.name })));
 
@@ -39,7 +38,7 @@ export default function () {
   const fetchRoles = async () => {
     try {
       loadingRoles.value = true;
-      const { data } = await apiRoles.findAll({ select: "name,key" });
+      const { data } = await apiRoles.findAll({ limit: 0, select: "name,key" });
       if (data.message === "ROLES_FOUND") {
         roles.value = data.data ?? [];
       }
@@ -56,7 +55,7 @@ export default function () {
 
     try {
       submitting.value = true;
-      const { data } = await apiUsers.create(form.value);
+      const { data } = await api.create(form.value);
       if (data.message === "USER_CREATED") {
         notifyApiSuccess("Usuario creado correctamente.");
         await router.push({ name: "users-index" });
@@ -72,20 +71,6 @@ export default function () {
     await router.push({ name: "users-index" });
   };
 
-  // ---- helpers
-  const resetForm = () => {
-    form.value = {
-      role: "",
-      firstName: "",
-      lastName: "",
-      dni: "",
-      phone: "",
-      email: "",
-      avatar: null,
-    };
-    v$.value.$reset();
-  };
-
   return {
     // State
     form,
@@ -98,6 +83,5 @@ export default function () {
     fetchRoles,
     handleSubmit,
     handleCancel,
-    resetForm,
   };
 }

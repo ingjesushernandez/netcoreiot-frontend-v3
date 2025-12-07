@@ -13,6 +13,7 @@ export default defineNuxtModule({
 
     nuxt.hook("imports:dirs", (dirs) => {
       dirs.push(resolve(__dirname, "./composables"));
+      dirs.push(resolve(__dirname, "./interfaces"));
       dirs.push(resolve(__dirname, "./stores"));
     });
 

@@ -1,5 +1,3 @@
-import type { IAuthDto, ILoggedUser } from "../modules/auth/interfaces";
-
 export const authAxios = () => {
   const { $api } = useNuxtApp();
   return {

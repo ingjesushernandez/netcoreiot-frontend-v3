@@ -323,6 +323,10 @@ body.dark-only .custom-input .form-select {
   border-color: #374558 !important;
 }
 
+body.dark-only .theme-form .form-control {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
 /* 5. TABLE */
 
 tbody,
@@ -502,12 +506,10 @@ body.dark-only .modal .modal-body .table td {
 }
 
 /* Profile */
-.profile-avatar .btn-upload  {
+.profile-avatar .btn-upload {
   bottom: 110px;
   left: 40px;
 }
-
-/* 8. IOT */
 
 /* 9. RESPONSIVE */
 

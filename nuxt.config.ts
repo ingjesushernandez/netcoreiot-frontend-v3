@@ -11,10 +11,22 @@ export default defineNuxtConfig({
       companyWebsite: "",
       companyLogo: "",
       apiUri: "",
+      mqttProtocol: "ws",
+      mqttHost: "localhost",
+      mqttPort: 8083,
+      mqttKeepalive: 60,
+      mqttConnectTimeout: 5000,
+      mqttReconnectMs: 2000,
     },
   },
 
-  css: ["@/assets/scss/app.scss", "@/assets/css/style.css", "@/assets/css/responsive.css", "@/assets/css/main.css"],
+  css: [
+    "@/assets/scss/app.scss",
+    "@/assets/css/style.css",
+    "@/assets/css/responsive.css",
+    "@/assets/css/main.css",
+    "@/assets/css/iot.css",
+  ],
 
   app: {
     head: {
@@ -38,8 +50,14 @@ export default defineNuxtConfig({
     "~/modules/home/module",
     "~/modules/users/module",
     "~/modules/settings/module",
+    "~/modules/templates/module",
+    "~/modules/devices/module",
+    "~/modules/alarms/module",
+    "~/modules/notifications/module",
+    "~/modules/reports/module",
 
     "nuxt-icon",
+    "@nuxtjs/leaflet",
     [
       "@pinia/nuxt",
       {

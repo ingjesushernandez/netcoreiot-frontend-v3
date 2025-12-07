@@ -2,7 +2,6 @@ import useVuelidate from "@vuelidate/core";
 import { required, minLength, email, maxLength } from "@vuelidate/validators";
 
 import { usersAxios } from "~/api/users.api";
-import type { IProfileForm } from "~/modules/users/interfaces";
 
 export default function () {
   const authStore = useAuthStore();

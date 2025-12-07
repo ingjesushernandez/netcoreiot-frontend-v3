@@ -1,5 +1,4 @@
 import type { IParams, IPaged } from "./api.interfaces";
-import type { IRole, ICreateRole, IPermissions } from "~/modules/settings/interfaces";
 
 export const rolesAxios = () => {
   const { $api } = useNuxtApp();

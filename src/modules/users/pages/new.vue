@@ -18,7 +18,6 @@ onMounted(async () => {
       :items="[{ label: 'Usuarios', toName: 'users-index' }, { label: titlePage }]"
     />
 
-    <!-- Container-fluid -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -34,8 +33,8 @@ onMounted(async () => {
                     :options="roleOptions"
                     :disabled="submitting || loadingRoles"
                     label="Rol"
-                    requiredMark
                     placeholder="Selecciona un rol"
+                    requiredMark
                   />
                 </div>
 

@@ -1,5 +1,5 @@
 import { defineNuxtModule } from "@nuxt/kit";
-import { resolve, join } from "pathe";
+import { resolve } from "pathe";
 
 const metaData = "settings";
 
@@ -7,12 +7,9 @@ export default defineNuxtModule({
   meta: { name: `${metaData}-module`, configKey: `${metaData}Module` },
 
   setup: (_opts, nuxt) => {
-    nuxt.hook("components:dirs", (dirs) => {
-      dirs.push({ path: join(__dirname, "./components") });
-    });
-
     nuxt.hook("imports:dirs", (dirs) => {
       dirs.push(resolve(__dirname, "./composables"));
+      dirs.push(resolve(__dirname, "./interfaces"));
       dirs.push(resolve(__dirname, "./stores"));
     });
 
@@ -34,8 +31,8 @@ export default defineNuxtModule({
           file: resolve(__dirname, "./pages/profile.vue"),
           meta: {
             auth: true,
-            perms: ["user:update", "user:avatar"],
-            mode: "any",
+            perms: ["user:update", "file:upload_avatar", "file:delete_avatar"],
+            mode: "all",
           },
         },
         {

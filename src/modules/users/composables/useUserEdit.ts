@@ -3,7 +3,6 @@ import { required, minLength, maxLength, email as vEmail } from "@vuelidate/vali
 
 import { rolesAxios } from "~/api/roles.api";
 import { usersAxios } from "~/api/users.api";
-import type { ICreateUser, IRoleOption } from "../interfaces";
 
 export default function () {
   const router = useRouter();
@@ -55,7 +54,7 @@ export default function () {
   };
 
   const loadUser = async () => {
-    if (!id.value) return;
+    if (!id.value) return router.push({ name: "users-index" });
     try {
       loadingUser.value = true;
       const { data } = await apiUsers.findById(id.value);
@@ -88,8 +87,8 @@ export default function () {
 
     try {
       submitting.value = true;
-      const { role, firstName, lastName, dni, phone, email } = form.value;
-      const { data } = await apiUsers.update(id.value, { role, firstName, lastName, dni, phone, email });
+      const payload: Partial<ICreateUser> = form.value;
+      const { data } = await apiUsers.update(id.value, payload);
       if (data.message === "USER_UPDATED") {
         notifyApiSuccess("Usuario actualizado correctamente.");
         await router.push({ name: "users-index" });
@@ -105,7 +104,6 @@ export default function () {
     await router.push({ name: "users-index" });
   };
 
-  // ---- Helpers
   const mapUserToForm = (u: any): ICreateUser => ({
     role: u?.role?._id || u?.role || "",
     firstName: u?.firstName ?? "",

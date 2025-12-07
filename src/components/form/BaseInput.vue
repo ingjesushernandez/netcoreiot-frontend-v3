@@ -5,6 +5,8 @@ interface Props {
   type?: string;
   modelValue: string | number | null | undefined;
   placeholder?: string;
+  min?: string;
+  max?: string;
   autocomplete?: string;
   disabled?: boolean;
   requiredMark?: boolean;
@@ -96,6 +98,8 @@ const onInput = (e: Event) => emit("update:modelValue", (e.target as HTMLSelectE
         :class="[{ 'is-invalid': invalid, 'pe-5': affixPadding && (slots.prefix || slots.suffix) }, inputClass]"
         :type="type"
         :placeholder="placeholder"
+        :min="min"
+        :max="max"
         :autocomplete="autocomplete"
         :disabled="disabled"
         :aria-invalid="invalid ? 'true' : 'false'"

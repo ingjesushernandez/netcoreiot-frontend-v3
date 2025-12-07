@@ -23,16 +23,16 @@ const {
 } = useUsers();
 
 const headers = [
-  { text: "Usuario", value: "user", sortable: true },
-  { text: "Teléfono", value: "phone", sortable: true },
+  { text: "Usuario", value: "user", sortable: true, width: 400 },
+  { text: "Teléfono", value: "phone", sortable: false, width: 150 },
   { text: "Rol", value: "role", sortable: false },
-  { text: "Estado", value: "isActive", sortable: true },
-  { text: "Creado", value: "createdAt", sortable: true },
+  { text: "Estado", value: "isActive", sortable: false, width: 80 },
+  { text: "Creado", value: "createdAt", sortable: true, width: 150 },
   { text: "Acciones", value: "actions" },
 ];
 
 onMounted(async () => {
-  setSelectFields(["firstName", "lastName", "email", "phone", "isActive", "avatar", "createdAt"]);
+  setSelectFields("firstName,lastName,email,phone,isActive,avatar,createdAt");
 });
 </script>
 
@@ -40,7 +40,6 @@ onMounted(async () => {
   <div>
     <SharedBreadcrumb :title="titlePage" :items="[{ label: titlePage }]" />
 
-    <!-- Container-fluid -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
@@ -50,7 +49,8 @@ onMounted(async () => {
                 <div class="col-12 col-md-6">
                   <SharedButton
                     label="Nuevo usuario"
-                    icon="fa6-solid:user-plus"
+                    icon="fa6-solid:plus"
+                    title="Agregar usuario"
                     :perms="['user:create']"
                     @click="goNew"
                   />
@@ -98,36 +98,37 @@ onMounted(async () => {
                   </div>
                 </template>
 
-                <template #item-phone="row">
-                  {{ row.phone || "—" }}
+                <template #item-phone="{ phone }">
+                  {{ phone || "—" }}
                 </template>
 
-                <template #item-role="row">
-                  {{ row.role?.name || "—" }}
+                <template #item-role="{ role }">
+                  {{ role?.name || "—" }}
                 </template>
 
-                <template #item-isActive="row">
+                <template #item-isActive="{ _id, isActive, role }">
                   <div class="form-check form-switch">
                     <input
-                      :id="`sw-${row._id}`"
+                      :id="`sw-${_id}`"
                       class="form-check-input switch-primary check-size"
                       type="checkbox"
                       role="switch"
-                      :checked="row.isActive"
-                      :disabled="rowLoading[row._id] || !can('user:enable') || isProtectedUser(row)"
-                      :aria-checked="row.isActive"
-                      :aria-label="row.isActive ? 'Desactivar usuario' : 'Activar usuario'"
-                      @change="(e) => handleEnable(row._id, (e.target as HTMLInputElement).checked)"
+                      :disabled="rowLoading[_id] || !can('user:enable') || isProtectedUser(role)"
+                      :title="isActive ? 'Desactivar usuario' : 'Activar usuario'"
+                      :checked="isActive"
+                      :aria-checked="isActive"
+                      :aria-label="isActive ? 'Desactivar usuario' : 'Activar usuario'"
+                      @change="(e) => handleEnable(_id, (e.target as HTMLInputElement).checked)"
                       @mouseup="(e)=> (e.currentTarget as HTMLInputElement).blur()"
                     />
                   </div>
                 </template>
 
-                <template #item-createdAt="row">
-                  {{ fmtDate(row.createdAt) }}
+                <template #item-createdAt="{ createdAt }">
+                  {{ fmtDate(createdAt) }}
                 </template>
 
-                <template #item-actions="row">
+                <template #item-actions="{ _id, role }">
                   <div class="d-flex justify-content-start gap-2">
                     <SharedButton
                       variant="link"
@@ -137,7 +138,7 @@ onMounted(async () => {
                       ariaLabel="Ver registro"
                       iconClass="txt-info"
                       :perms="['user:findbyid']"
-                      @click="goView(row._id)"
+                      @click="goView(_id)"
                     />
 
                     <SharedButton
@@ -148,7 +149,7 @@ onMounted(async () => {
                       ariaLabel="Editar registro"
                       iconClass="txt-success"
                       :perms="['user:update']"
-                      @click="goEdit(row._id)"
+                      @click="goEdit(_id)"
                     />
 
                     <SharedButton
@@ -158,9 +159,9 @@ onMounted(async () => {
                       title="Eliminar registro"
                       ariaLabel="Eliminar registro"
                       iconClass="txt-danger"
-                      :disabled="isProtectedUser(row)"
+                      :disabled="isProtectedUser(role)"
                       :perms="['user:delete']"
-                      @click="handleDelete(row._id)"
+                      @click="handleDelete(_id)"
                     />
                   </div>
                 </template>
@@ -177,7 +178,7 @@ onMounted(async () => {
                   :total="totalItems"
                   :disabled="loading"
                   @update:page="(p) => onUpdateServerOptions({ page: p })"
-                  @update:per-page="(n) => onUpdateServerOptions({ rowsPerPage: n, page: 1 })"
+                  @update:per-page="(n:number) => onUpdateServerOptions({ rowsPerPage: n, page: 1 })"
                 />
               </div>
             </div>

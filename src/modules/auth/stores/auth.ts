@@ -1,9 +1,9 @@
 import { authAxios } from "~/api/auth.api";
-import type { ILoggedUser } from "../interfaces";
 
 const SESSION_KEY = "auth-session";
 
 export const useAuthStore = defineStore("auth", () => {
+  const { stopMqttClient } = useMqtt();
   const authApi = authAxios();
   const loggedUser = ref<ILoggedUser | null>(null);
   const loggedUserId = ref<string>("");
@@ -56,6 +56,7 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       await authApi.logout();
     } finally {
+      stopMqttClient();
       resetLogout();
     }
   };

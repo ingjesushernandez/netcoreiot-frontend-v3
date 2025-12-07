@@ -29,7 +29,6 @@ onMounted(async () => {
       :items="[{ label: 'Usuarios', toName: 'users-index' }, { label: titlePage }]"
     />
 
-    <!-- Container-fluid -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">

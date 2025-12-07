@@ -4,8 +4,7 @@ useHead({
   titleTemplate: (t) => `${titlePage.value} | ${t}`,
 });
 
-const { load, loading, user, fullName, roleName, roleKey, permsCount, createdAtFmt, updatedAtFmt, goBack, goEdit } =
-  useUserView();
+const { load, loading, user, fullName, roleName, roleKey, permsCount, goBack, goEdit } = useUserId();
 
 onMounted(async () => {
   await load();
@@ -19,7 +18,6 @@ onMounted(async () => {
       :items="[{ label: 'Usuarios', toName: 'users-index' }, { label: titlePage }]"
     />
 
-    <!-- Container-fluid -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
@@ -29,16 +27,17 @@ onMounted(async () => {
               <div class="d-flex gap-2">
                 <SharedButton
                   size="sm"
-                  color="danger"
+                  color="secondary"
                   variant="outline"
                   label="Volver"
+                  title="Volver al listado"
                   icon="fa6-solid:arrow-left"
                   @click="goBack"
                 />
                 <SharedButton
-                  title="Editar registro"
                   size="sm"
                   label="Editar"
+                  title="Editar registro"
                   icon="fa6-regular:pen-to-square"
                   :perms="['user:update']"
                   @click="goEdit"
@@ -106,43 +105,14 @@ onMounted(async () => {
                       <small class="text-muted d-block">Correo electrónico</small>
                       <div class="d-flex align-items-center gap-2">
                         <div>{{ user.email }}</div>
-                        <div v-if="user.email">
-                          <a title="Copiar email" href="javascript:void(0)">
-                            <small>
-                              <Icon
-                                @click="
-                                  (async () =>
-                                    (await copyToClipboard(user.email))
-                                      ? notifyApiSuccess('Copiado en el portapapeles.')
-                                      : notifyApiError('No se pudo copiar'))()
-                                "
-                                name="fa6-regular:copy"
-                              />
-                            </small>
-                          </a>
-                        </div>
+                        <SharedBtnCopy :value="user.email" title="Copiar email" />
                       </div>
                     </div>
-
                     <div class="col-12 col-md-6">
                       <small class="text-muted d-block">Documento</small>
                       <div class="d-flex align-items-center gap-2">
                         <div>{{ user.dni || "—" }}</div>
-                        <div v-if="user.dni">
-                          <a title="Copiar documento" href="javascript:void(0)">
-                            <small>
-                              <Icon
-                                @click="
-                                  (async () =>
-                                    (await copyToClipboard(user.dni))
-                                      ? notifyApiSuccess('Copiado en el portapapeles.')
-                                      : notifyApiError('No se pudo copiar'))()
-                                "
-                                name="fa6-regular:copy"
-                              />
-                            </small>
-                          </a>
-                        </div>
+                        <SharedBtnCopy :value="user.dni" title="Copiar documento" />
                       </div>
                     </div>
 
@@ -150,32 +120,18 @@ onMounted(async () => {
                       <small class="text-muted d-block">Teléfono</small>
                       <div class="d-flex align-items-center gap-2">
                         <div>{{ user.phone || "—" }}</div>
-                        <div v-if="user.phone">
-                          <a title="Copiar teléfono" href="javascript:void(0)">
-                            <small>
-                              <Icon
-                                @click="
-                                  (async () =>
-                                    (await copyToClipboard(user.phone))
-                                      ? notifyApiSuccess('Copiado en el portapapeles.')
-                                      : notifyApiError('No se pudo copiar'))()
-                                "
-                                name="fa6-regular:copy"
-                              />
-                            </small>
-                          </a>
-                        </div>
+                        <SharedBtnCopy :value="user.phone" title="Copiar teléfono" />
                       </div>
                     </div>
 
                     <div class="col-12 col-md-6">
                       <small class="text-muted d-block">Creado</small>
-                      <div>{{ createdAtFmt }}</div>
+                      <div>{{ fmtDate(user?.createdAt) }}</div>
                     </div>
 
                     <div class="col-12 col-md-6">
                       <small class="text-muted d-block">Actualizado</small>
-                      <div>{{ updatedAtFmt }}</div>
+                      <div>{{ fmtDate(user?.updatedAt) }}</div>
                     </div>
 
                     <div class="col-12 col-md-6">

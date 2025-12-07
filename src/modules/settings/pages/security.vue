@@ -16,7 +16,6 @@ const to2FA = () => (activeTab.value = "2fa");
   <div>
     <SharedBreadcrumb :title="titlePage" :items="[{ label: titlePage }]" />
 
-    <!-- Container-fluid -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">

@@ -1,0 +1,188 @@
+:root {
+  --w-primary: #7366ff;
+  --w-secondary: #ff3364;
+  --w-success: #54ba4a;
+  --w-warning: #ffaa05;
+  --w-info: #0d6efd;
+}
+
+.page-header .nav-menus .icon-mqtt-success path{
+  color: var(--w-success) !important;
+}
+
+.page-header .nav-menus .icon-mqtt-error path{
+  color: var(--w-secondary) !important;
+}
+
+/* Colors */
+.widget-primary {
+  color: var(--w-primary) !important;
+}
+
+.widget-secondary {
+  color: var(--w-secondary) !important;
+}
+
+.widget-success {
+  color: var(--w-success) !important;
+}
+
+.widget-warning {
+  color: var(--w-warning) !important;
+}
+
+.widget-info {
+  color: var(--w-info) !important;
+}
+
+body.dark-only .widget-dark {
+  color: #1d1e26;
+}
+
+body.dark-only .widget-card.widget-preview .widget-dark {
+  color: #434858;
+}
+
+body.dark-only .widget-card.widget-preview .switch .switch-state.widget-dark {
+  background-color: #434858 !important;
+}
+
+.widget-dark {
+  color: #e8e8e8;
+}
+
+/* Card */
+.widget-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.widget-card .card-body .row {
+  max-height: 120px;
+  min-height: 120px;
+}
+
+.card.widget-card-h {
+  max-height: 505px;
+  min-height: 505px;
+}
+
+body.dark-only .widget-preview {
+  background-color: #1d1e26 !important;
+}
+
+.drag-container {
+  min-height: 200px;
+  padding: 20px;
+}
+
+.drag-item {
+  padding: 10px;
+  border-radius: 15px;
+  cursor: move;
+  transition: background 0.5s;
+}
+
+.drag-item:hover {
+  background: #e9e9e9;
+}
+
+body.dark-only .drag-item:hover {
+  background: #343844;
+}
+
+/* Switch */
+.switch input:checked + .switch-state.widget-primary {
+  background-color: var(--w-primary) !important;
+}
+
+.switch input:checked + .switch-state.widget-secondary {
+  background-color: var(--w-secondary) !important;
+}
+
+.switch input:checked + .switch-state.widget-success {
+  background-color: var(--w-success) !important;
+}
+
+.switch input:checked + .switch-state.widget-warning {
+  background-color: var(--w-warning) !important;
+}
+
+.switch input:checked + .switch-state.widget-info {
+  background-color: var(--w-info) !important;
+}
+
+/* Maps */
+#widget-maps .leaflet-container {
+  z-index: 1;
+}
+
+#widget-maps .marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #0c2345;
+  border-radius: 7px;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.5);
+}
+
+.custom-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.custom-marker::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 15px solid #0c2345;
+}
+
+#widget-maps .custom-marker .img-marker {
+  width: auto;
+  height: 12px;
+}
+
+.btn-show-marker {
+  border: none;
+  width: 34px;
+  height: 34px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px 1px #0000005d;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.btn-show-marker:hover {
+  color: #ffffff;
+  background-color: var(--theme-deafult);
+  transition: all 0.5s ease;
+}
+
+/* Chart */
+body.dark-only .apexcharts-canvas .apexcharts-legend .apexcharts-legend-text {
+  color: #fff9 !important;
+}
+
+.apexcharts-canvas .apexcharts-legend .apexcharts-legend-marker {
+  margin-right: 5px;
+}
+
+.apexcharts-canvas .apexcharts-tooltip .apexcharts-tooltip-marker {
+  width: 16px;
+  height: 16px;
+}

@@ -24,6 +24,11 @@ export const MSG: Record<string, string> = {
   ROLE_NOT_UPDATED: "No fue posible actualizar el rol.",
   ROLE_NOT_FOUND: "El rol no se encuentra registrado.",
   ROLE_IN_USE: "El rol se encuentra en uso.",
+  TEMPLATE_IN_USE: "El template se encuentra en uso.",
+  TEMPLATE_NOT_FOUND: "El template no se encuentra registrado.",
+  DEVICE_NOT_FOUND: "El dispositivo no se encuentra registrado.",
+  SERIAL_EXISTS: "El serial ya se encuentra registrado.",
+  ALARM_NOT_FOUND: "La alarma no se encuentra registrada.",
 };
 
 type ToastKind = "success" | "error";

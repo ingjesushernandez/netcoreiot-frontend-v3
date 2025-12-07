@@ -6,12 +6,12 @@ export default function () {
   const store = useUsersStore();
 
   const { search, serverOptions, rowLoading, setSelectFields, setDateRange, onUpdateServerOptions, fetchList } =
-    useListController({
+    useListController<IUser>({
       fetcher: async (q) => {
         const { data } = await api.findAll(q);
         return { items: data.data ?? [], total: data.total ?? 0 };
       },
-      setList: store.setList,
+      setList: (list, total) => store.setList(list, total),
       loadingRef: toRef(store, "loading"),
     });
 
@@ -23,7 +23,7 @@ export default function () {
 
   const handleDelete = async (id: string) => {
     const u = findLocal(id);
-    if (isProtectedUser(u, "superadmin")) {
+    if (isProtectedUser(u?.role)) {
       notifyApiError(null as any, "No puedes eliminar al superadmin.");
       return;
     }
@@ -52,7 +52,7 @@ export default function () {
 
   const handleEnable = async (id: string, next: boolean) => {
     const u = findLocal(id);
-    if (isProtectedUser(u, "superadmin")) {
+    if (isProtectedUser(u?.role)) {
       notifyApiError(null as any, "No puedes cambiar el estado del superadmin.");
       return;
     }

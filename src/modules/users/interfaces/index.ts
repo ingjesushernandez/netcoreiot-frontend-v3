@@ -5,7 +5,7 @@ export interface IUser {
   lastName?: string;
   dni?: string;
   phone?: string;
-  email?: string;
+  email: string;
   avatar?: string | null;
   isVerified?: boolean;
   isActive?: boolean;
@@ -37,15 +37,15 @@ export interface IUpdatePass {
   confirmPassword?: string;
 }
 
-export interface IRoleOption {
-  _id: string;
-  key: string;
-  name: string;
-}
 export interface IProfileForm {
   firstName: string;
   lastName: string;
   phone: string;
   email: string;
   dni: string;
+}
+
+export interface IUserOption {
+  _id: string;
+  email: string;
 }

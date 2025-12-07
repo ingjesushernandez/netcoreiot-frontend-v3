@@ -5,10 +5,9 @@
     <HeaderLogo />
     <div class="nav-right col-xxl-10 col-xl-10 col-md-8 col-10 pull-right right-header p-0 ms-auto">
       <ul class="nav-menus">
-        <li>
-          <HeaderMode />
-        </li>
+        <HeaderMode />
         <HeaderNotifications />
+        <HeaderMqtt />
         <HeaderProfile />
       </ul>
     </div>

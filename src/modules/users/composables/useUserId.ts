@@ -9,7 +9,7 @@ export default function () {
 
   // ---- State
   const loading = ref(false);
-  const user = ref<any | null>(null);
+  const user = ref<IUser | null>(null);
 
   const load = async () => {
     if (!id.value) return router.push({ name: "users-index" });
@@ -38,9 +38,6 @@ export default function () {
   const roleKey = computed(() => user.value?.role?.key ?? "—");
   const permsCount = computed(() => user.value?.role?.permissions?.length ?? 0);
 
-  const createdAtFmt = computed(() => fmtDate(user.value?.createdAt));
-  const updatedAtFmt = computed(() => fmtDate(user.value?.updatedAt));
-
   const goBack = () => router.push({ name: "users-index" });
   const goEdit = () => router.push({ name: "users-edit", params: { id: id.value } });
 
@@ -54,8 +51,6 @@ export default function () {
     roleName,
     roleKey,
     permsCount,
-    createdAtFmt,
-    updatedAtFmt,
 
     // Actions
     load,

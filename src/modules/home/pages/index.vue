@@ -3,44 +3,94 @@ const titlePage = ref("Dashboard");
 useHead({
   titleTemplate: (t) => `${titlePage.value} | ${t}`,
 });
+
+const { loadDevices, loadingDevices, selecting, hasDevices, devices, selectedId, devSelectedOpts, widgetsForView } =
+  useDashboard();
+
+onMounted(async () => {
+  await loadDevices();
+});
 </script>
 
 <template>
   <div>
-    <SharedBreadcrumb :title="titlePage" :items="[{ label: titlePage }]" />
-
-    <!-- Container-fluid -->
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
+      <div class="page-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3>{{ devices.find((d) => d._id === selectedId)?.name ?? "Dashboard" }}</h3>
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb mb-0 justify-content-sm-end">
+              <li class="breadcrumb-item">
+                <span>
+                  {{ devices.find((d) => d._id === selectedId)?.serial ?? "" }}
+                </span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row g-3">
+        <!-- Estado vacío -->
+        <div v-if="!loadingDevices && !hasDevices" class="col-12">
           <div class="card">
-            <div class="card-header">
-              <h5>Sample Card</h5>
-              <p class="f-m-light mt-1">Here you can enter a sub-title for your card.</p>
-            </div>
             <div class="card-body">
-              <p>
-                <strong>Web Design Trends: </strong> Stay up-to-date with the latest trends in web design, such as the
-                use of animations, micro-interactions, dark mode, and unique navigation techniques.Keep your website's
-                navigation simple and intuitive, allowing users to find what they need easily without overwhelming them
-                with options.
-              </p>
-              <p>
-                <strong>Design Tools: </strong> Information on popular design software like Adobe Photoshop, Sketch,
-                Figma, or Adobe XD, along with tips and tricks for efficient workflow and collaboration.Compress and
-                optimize images to improve website loading speed and overall performance, providing a better user
-                experience.
-              </p>
-              <p>
-                <strong>Front-End Development: </strong> A basic understanding of HTML, CSS, and JavaScript can enhance
-                your web design skills, enabling you to create interactive and dynamic elements.Ensure sufficient
-                contrast between text and background colors to enhance readability and accessibility, especially for
-                users with visual impairments.
-              </p>
+              <p class="m-0">No tienes dispositivos agregados todavía.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selector de dispositivo -->
+        <div v-else class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="theme-form row g-3 align-items-end">
+                <div class="col-12">
+                  <FormSelect
+                    id="selectedDevice"
+                    v-model="selectedId"
+                    :options="devSelectedOpts"
+                    :disabled="loadingDevices || selecting"
+                    label="Selecionar dispositivo"
+                    placeholder="Selecciona dispositivo"
+                  />
+                </div>
+
+                <!-- <div class="col-12 col-md-6">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="text-muted">
+                      <template v-if="loadingDevices">Cargando…</template>
+                      <template v-else-if="selecting">Cambiando…</template>
+                      <template v-else> </template>
+                    </span>
+                  </div>
+                </div> -->
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Grid de widgets -->
+      <template v-if="hasDevices && widgetsForView.length">
+        <div class="row">
+          <div v-for="w in widgetsForView" :key="`${w.selectedDevice?.id}-${w.widgetId}`" :class="w.column">
+            <!-- <Json :value="w" /> -->
+            <IotNumberChart v-if="w.type === 'number_chart'" :config="w" />
+            <IotNumberIndicator v-if="w.type === 'number_indicator'" :config="w" />
+            <IotStatusIndicator v-if="w.type === 'status_indicator'" :config="w" />
+            <IotMap v-if="w.type === 'map'" :config="w" />
+            <IotButton v-if="w.type === 'button'" :config="w" />
+            <IotSwitch v-if="w.type === 'switch'" :config="w" />
+            <IotDimmer v-if="w.type === 'dimmer'" :config="w" />
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
